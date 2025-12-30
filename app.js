@@ -18,7 +18,7 @@ const User = require("./models/user");
 const ticketRoutes = require("./routes/tickets");
 const userRoutes = require("./routes/users");
 
-const dbUrl = process.env.DB_URL || "mongodb://127.0.0.1:27017/eventTickets";
+const dbUrl = process.env.ATLASDB_URL;
 
 mongoose
   .connect(dbUrl)
