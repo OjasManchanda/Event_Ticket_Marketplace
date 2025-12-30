@@ -30,7 +30,7 @@ router.post("/login",
       req.flash("success", "Welcome back!");
       
       // Explicitly save the session before redirecting
-      req.session.save((err) => {
+      return req.session.save((err) => {
         if (err) {
           console.error("Session save error:", err);
           req.flash("error", "Login failed. Please try again.");

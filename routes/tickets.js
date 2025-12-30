@@ -9,13 +9,20 @@ router.get("/", ticketController.index);
 // Search tickets
 router.get("/search", ticketController.searchTickets);
 
+// My booked tickets (MOVE UP)
+router.get("/my-tickets", isLoggedIn, ticketController.myBookedTickets);
+
+// Admin routes (MOVE UP)
+router.get("/admin/dashboard", isLoggedIn, isAdmin, ticketController.adminDashboard);
+router.get("/admin/qr-scanner", isLoggedIn, isAdmin, ticketController.qrScanner);
+
 // New form
 router.get("/new", isLoggedIn, ticketController.renderNewForm);
 
 // Create ticket
 router.post("/", isLoggedIn, ticketController.createTicket);
 
-// Show ticket
+// Show ticket (KEEP LAST)
 router.get("/:id", ticketController.showTicket);
 
 // Edit form
@@ -33,19 +40,10 @@ router.post("/:id/book", isLoggedIn, ticketController.bookTicket);
 // Cancel ticket
 router.post("/:id/cancel", isLoggedIn, ticketController.cancelTicket);
 
-// Show confirmation
+// Confirmation
 router.get("/:id/confirmation", isLoggedIn, ticketController.showConfirmation);
 
-// Download ticket as PDF
+// Download PDF
 router.get("/:id/download", isLoggedIn, ticketController.downloadTicket);
-
-// My booked tickets
-router.get("/my-tickets", isLoggedIn, ticketController.myBookedTickets);
-
-// Admin dashboard
-router.get("/admin/dashboard", isLoggedIn, isAdmin, ticketController.adminDashboard);
-
-// QR scanner
-router.get("/admin/qr-scanner", isLoggedIn, isAdmin, ticketController.qrScanner);
 
 module.exports = router;
